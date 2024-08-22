@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://ba5a4mcs12fq6"]
+
+[ext_resource type="Script" path="res://Scenes/TempEnemy.gd" id="1_7in87"]
+[ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Placeholder/SlimeGreen.png" id="2_v7awe"]
+[ext_resource type="Texture2D" uid="uid://dxy13sniooj30" path="res://Sprites/Placeholder/CharacterFocus.png" id="3_eqo1v"]
+
+[sub_resource type="Animation" id="Animation_tguv7"]
+resource_name = "HurtTest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(30, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nrnoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ryjnw"]
+_data = {
+"HurtTest": SubResource("Animation_tguv7"),
+"RESET": SubResource("Animation_nrnoq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly2em"]
+size = Vector2(35, 35.25)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_7in87")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(4, 2)
+texture = ExtResource("2_v7awe")
+
+[node name="Focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 100)
+texture = ExtResource("3_eqo1v")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -50.0
+offset_top = -84.0
+offset_right = 50.0
+offset_bottom = -57.0
+value = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ryjnw")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ly2em")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

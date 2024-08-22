@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://desklmqd1b8i8"]
+
+[ext_resource type="Script" path="res://EnemyGroup.gd" id="1_4m3od"]
+[ext_resource type="PackedScene" uid="uid://ba5a4mcs12fq6" path="res://Scenes/TempEnemy.tscn" id="2_4c2mw"]
+[ext_resource type="PackedScene" uid="uid://crb4o81kroyk5" path="res://Scenes/entity_zone.tscn" id="3_f17ju"]
+[ext_resource type="Texture2D" uid="uid://jo44rugjyiov" path="res://Sprites/Placeholder/SlimeBlue.png" id="4_2p5cg"]
+[ext_resource type="Texture2D" uid="uid://jpl7gmq6lxc0" path="res://Sprites/Placeholder/SlimeRed.png" id="5_avw2i"]
+
+[node name="PlayerGroup" type="Node2D"]
+script = ExtResource("1_4m3od")
+
+[node name="EntityZone" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(84, 84)
+
+[node name="EntityZone2" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(74, 230)
+
+[node name="EntityZone3" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(64, 377)
+
+[node name="EntityZone4" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(262, 84)
+
+[node name="EntityZone5" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(252, 230)
+
+[node name="EntityZone6" parent="." instance=ExtResource("3_f17ju")]
+position = Vector2(242, 377)
+
+[node name="Green" parent="." instance=ExtResource("2_4c2mw")]
+position = Vector2(389, 215)
+
+[node name="Blue" parent="." instance=ExtResource("2_4c2mw")]
+
+[node name="EnemySprite" parent="Blue" index="0"]
+texture = ExtResource("4_2p5cg")
+
+[node name="Red" parent="." instance=ExtResource("2_4c2mw")]
+position = Vector2(50, 0)
+
+[node name="EnemySprite" parent="Red" index="0"]
+texture = ExtResource("5_avw2i")
+
+[editable path="Blue"]
+[editable path="Red"]

@@ -1,0 +1,31 @@
+{"Slimes":
+	[
+		{"Type": "Green Slime",
+		"Gender": "Null",
+		"Health": 6,
+		"Defense": 0,
+		"Speed": 3,
+		"Attack": 2,
+		"Element": "Normal",
+		"Sprite": "res://Sprites/Placeholder/SlimeGreen.png"
+		},
+		{"Type": "Blue Slime",
+		"Gender": "Null",
+		"Health": 6,
+		"Defense": 0,
+		"Speed": 3,
+		"Attack": 2,
+		"Element": "Water",
+		"Sprite": "res://Sprites/Placeholder/SlimeBlue.png"
+		},
+		{"Type": "Red Slime",
+		"Gender": "Null",
+		"Health": 6,
+		"Defense": 0,
+		"Speed": 3,
+		"Attack": 2,
+		"Element": "Fire",
+		"Sprite": "res://Sprites/Placeholder/SlimeRed.png"
+		},
+	]
+}
