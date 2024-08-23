@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbjwepfq1ljs7"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyGroup.gd" id="1_irp60"]
+[ext_resource type="PackedScene" uid="uid://crb4o81kroyk5" path="res://Scenes/entity_zone.tscn" id="2_4x2in"]
+
+[node name="Enemy Group" type="Node2D"]
+script = ExtResource("1_irp60")
+
+[node name="EntityZone" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(1020, 273)
+
+[node name="EntityZone2" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(1031, 386)
+
+[node name="EntityZone3" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(1042, 499)
+
+[node name="EntityZone4" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(831, 273)
+
+[node name="EntityZone5" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(842, 386)
+
+[node name="EntityZone6" parent="." instance=ExtResource("2_4x2in")]
+position = Vector2(853, 499)

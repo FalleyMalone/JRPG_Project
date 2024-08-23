@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://h40tq6bcdirn"]
+[gd_scene load_steps=5 format=3 uid="uid://h40tq6bcdirn"]
 
 [ext_resource type="Texture2D" uid="uid://b2w7ktgu20rsk" path="res://Sprites/Placeholder/BasicLayout.png" id="1_36mh8"]
+[ext_resource type="Script" path="res://Levels/TestOne.gd" id="1_qdnyv"]
 [ext_resource type="PackedScene" uid="uid://desklmqd1b8i8" path="res://Scenes/player_group.tscn" id="2_52x6o"]
 [ext_resource type="PackedScene" uid="uid://bbjwepfq1ljs7" path="res://Scenes/enemy_group.tscn" id="3_f161f"]
 
-[node name="Node2D" type="Node2D"]
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_qdnyv")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -38,6 +40,13 @@ layout_mode = 2
 text = "Run
 "
 
+[node name="TeamSetup" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/TeamSetup"]
+layout_mode = 2
+
 [node name="PlayerGroup" parent="." instance=ExtResource("2_52x6o")]
 
-[node name="Enemy Group" parent="." instance=ExtResource("3_f161f")]
+[node name="EnemyGroup" parent="." instance=ExtResource("3_f161f")]

@@ -1,19 +1,29 @@
 extends Node2D
 
-var players: Array = []
-var index : int = 0
+#var zones = ["OneP","TwoP","ThreeP","FourP","FiveP","SixP"]
+var used_spawns = []
+var zones = []
+var random = RandomNumberGenerator.new()
+var player_gen = preload("res://Scenes/character_generation.tscn")
+var players = []
+
+@onready var choice = $"../CanvasLayer/Choice"
 
 func _ready():
-	players = get_children()
+	zones = get_children()
+	SpawnPlayer()
+	var current_nodes = get_child_count()
 
-func _on_enemy_group_next_player():
-	if index < players.size() - 1:
-		index += 1
-		switch_focus(index, index - 1)
-	else:
-		index = 0
-		switch_focus(index, players.size() - 1)
-
-func switch_focus(x,y):
-	players[x].focus()
-	players[y].unfocus()
+func SpawnPlayer():
+	random.randomize()
+	for i in range(random.randi_range(1, 6)):
+		var rand_spawn_point = zones[randi() % zones.size()]
+		var location_name = rand_spawn_point.get_name()
+		while used_spawns.has(location_name):
+			rand_spawn_point = zones[randi() % zones.size()]
+			location_name = rand_spawn_point.get_name()
+		used_spawns.append(location_name) 
+		var instance = player_gen.instantiate()
+		instance.CharacterDetermineSpawn(location_name)
+		add_child(instance)
+		players.append(instance)

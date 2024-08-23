@@ -48,7 +48,6 @@ script = ExtResource("1_7in87")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(4, 2)
 texture = ExtResource("2_bmuo5")
 
 [node name="Focus" type="Sprite2D" parent="."]

@@ -13,12 +13,21 @@ var character_rarity_distribution = {
 		"Legendary": 4}
 
 var enemy_possitions = {
-	"One":   Vector2(1020, 273),
-	"Two":   Vector2(1031, 386),
-	"Three": Vector2(1042, 499),
-	"Four":  Vector2(831, 273),
-	"Five":  Vector2(842, 386),
-	"Six":   Vector2(853, 499),
+	"OneE":   Vector2(1020, 273),
+	"TwoE":   Vector2(1031, 386),
+	"ThreeE": Vector2(1042, 499),
+	"FourE":  Vector2(831, 273),
+	"FiveE":  Vector2(842, 386),
+	"SixE":   Vector2(853, 499),
+}
+
+var player_possitions = {
+	"OneP":   Vector2(129, 273),
+	"TwoP":   Vector2(118, 386),
+	"ThreeP": Vector2(107, 499),
+	"FourP":  Vector2(318, 273),
+	"FiveP":  Vector2(307, 386),
+	"SixP":   Vector2(296, 499),
 }
 
 var character_stats = ["Str", "Dex", "Con", "Wis", "Int", "Cha", "Luck"]

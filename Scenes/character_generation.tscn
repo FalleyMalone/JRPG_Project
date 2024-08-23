@@ -1,6 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://1f4rkepdmd32"]
+[gd_scene load_steps=7 format=3 uid="uid://1f4rkepdmd32"]
 
 [ext_resource type="Script" path="res://Scenes/character_generation.gd" id="1_nku1i"]
+[ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Enemies/SlimeGreen.png" id="2_ncy5u"]
+[ext_resource type="FontFile" uid="uid://b26htrqiy0pds" path="res://Theme Items/Fonts/Nexa-Heavy.ttf" id="3_4rqv2"]
 
-[node name="CharacterGeneration" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikew0"]
+bg_color = Color(1, 0.94902, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekpfu"]
+bg_color = Color(0.738962, 0, 0.0487275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hupfq"]
+size = Vector2(41.5, 35.25)
+
+[node name="CharacterGeneration" type="CharacterBody2D"]
+z_index = 3
+z_as_relative = false
 script = ExtResource("1_nku1i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+texture = ExtResource("2_ncy5u")
+
+[node name="TextureProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 23.0
+offset_right = 40.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ikew0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ekpfu")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureProgressBar"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 20.0
+theme_override_fonts/normal_font = ExtResource("3_4rqv2")
+theme_override_font_sizes/normal_font_size = 0
+scroll_active = false
+autowrap_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hupfq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,24 +1,28 @@
 extends Node2D
 
-# Called when the node enters the scene tree for the first time.
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		CharacterGenerate()
+@onready var sprite_2d = $Sprite2D
+@onready var health_bar = $TextureProgressBar
+@onready var health_count = $TextureProgressBar/RichTextLabel
+var new_mob = {}
+var draggable = false
+var is_inside_dropable = false
+var body_ref
+var offset: Vector2
+var initialPos : Vector2
 
-func CharacterGenerate():
-	var new_character = {}
-	new_character["character_id"] = CharacterDetermineClass()
-	new_character["character_rarity"] = CharacterDetermineRarity()
+func _ready():
+	new_mob["character_id"] = CharacterDetermineClass()
+	new_mob["Team"] = "Player"
+	new_mob["level"] = 1
+	new_mob["Defense"] = 0
+	new_mob["character_rarity"] = CharacterDetermineRarity()
 	CharacterDetermineBackground()
 	CharacterDetermineRaceGender()
 	for i in GameData.character_stats:
-		if GameData.character_data[new_character["character_id"]][i] != null:
-			new_character[i] = CharacterDetermineStats(new_character["character_id"], new_character["character_rarity"], i)
-	print(new_character)
+		if GameData.character_data[new_mob["character_id"]][i] != null:
+			new_mob[i] = CharacterDetermineStats(new_mob["character_id"], new_mob["character_rarity"], i)
 
 func CharacterDetermineClass():
-	#Link up a ClassTable to make this game ready
-	#Needs class rarity implemented
 	var new_character_class
 	var character_classes = GameData.character_data.keys()
 	randomize()
@@ -44,7 +48,54 @@ func CharacterDetermineBackground():
 func CharacterDetermineRaceGender():
 	pass
 
+func CharacterDetermineSpawn(spawn):
+	var spawn_point = GameData.player_possitions[spawn]
+	global_position = spawn_point
+	new_mob["Location"] = spawn
+	return spawn_point
+
 func CharacterDetermineStats(character_id, rarity, stat):
-	var stat_val
-	stat_val = GameData.character_data[character_id][stat] * GameData.character_data[character_id][rarity + "Multi"]
+	var stat_val = GameData.character_data[character_id][stat] * GameData.character_data[character_id][rarity + "Multi"]
+	if stat == "Con":
+		new_mob["Health"] = 5 + stat_val
+		health_bar.max_value = new_mob["Health"]
+		health_bar.value = new_mob["Health"]
+		health_count.append_text("[center][b]%s/%s" % [stat_val, stat_val])
+	elif stat == "Dex":
+		new_mob["Speed"] = stat_val
 	return snapped(stat_val, 1)
+
+func _process(delta):
+	if draggable:
+		if Input.is_action_just_pressed("click"):
+			initialPos = global_position
+			offset = get_global_mouse_position() - global_position
+			global.is_dragging = true
+		if Input.is_action_pressed("click"):
+			global_position = get_global_mouse_position() - offset
+		elif Input.is_action_just_released("click"):
+			global.is_dragging = false
+			var tween = get_tree().create_tween()
+			if is_inside_dropable:
+				tween.tween_property(self, "position", GameData.player_possitions[body_ref], 0.2).set_ease(Tween.EASE_OUT)
+			else:
+				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group('dropable'):
+		is_inside_dropable = true
+		body_ref = body.get_name()
+
+func _on_area_2d_body_exited(body):
+	if body.is_in_group('dropable'):
+		is_inside_dropable = false
+
+func _on_area_2d_mouse_entered():
+	if not global.is_dragging:
+		draggable = true
+		scale = Vector2(1.05, 1.05)
+
+func _on_area_2d_mouse_exited():
+	if not global.is_dragging:
+		draggable = false
+		scale = Vector2(1, 1)
