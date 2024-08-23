@@ -12,11 +12,10 @@ config_version=5
 
 config/name="Turn Based Rpg"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-global="*res://global.gd"
+global="*res://Scripts/global.gd"
 GameData="*res://combat_data/GameData.gd"
 
 [input]

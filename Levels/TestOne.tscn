@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://h40tq6bcdirn"]
+[gd_scene load_steps=4 format=3 uid="uid://h40tq6bcdirn"]
 
 [ext_resource type="Texture2D" uid="uid://b2w7ktgu20rsk" path="res://Sprites/Placeholder/BasicLayout.png" id="1_36mh8"]
 [ext_resource type="PackedScene" uid="uid://desklmqd1b8i8" path="res://Scenes/player_group.tscn" id="2_52x6o"]
+[ext_resource type="PackedScene" uid="uid://bbjwepfq1ljs7" path="res://Scenes/enemy_group.tscn" id="3_f161f"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -38,4 +39,5 @@ text = "Run
 "
 
 [node name="PlayerGroup" parent="." instance=ExtResource("2_52x6o")]
-position = Vector2(36, 178)
+
+[node name="Enemy Group" parent="." instance=ExtResource("3_f161f")]

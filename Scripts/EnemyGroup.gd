@@ -1,17 +1,24 @@
 extends Node2D
 
-var enemies: Array = []
+var zones = ["One","Two","Three","Four","Five","Six"]
 var action_queue: Array = []
 var is_battling: bool = false
 var index: int = 0
+var spawn_points = ["One","Two","Three","Four","Five","Six"]
+var last_spawn = ""
+var random = RandomNumberGenerator.new()
 
 signal next_player
 @onready var choice = $"../CanvasLayer/Choice"
 
 func _ready():
-	enemies = get_children()
-	
-	#show_choice()
+	random.randomize()
+	for i in range(random.randi_range(1, 6)):
+		var rand_spawn_point = spawn_points[randi() % spawn_points.size()]
+		while rand_spawn_point == last_spawn:
+			rand_spawn_point = spawn_points[randi() % spawn_points.size()]
+		last_spawn = rand_spawn_point
+		EnemyGenerate(rand_spawn_point)
 
 #func _process(delta):
 	#if not choice.visible:

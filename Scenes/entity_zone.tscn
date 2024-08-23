@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://crb4o81kroyk5"]
 
-[ext_resource type="Script" path="res://EntityZone.gd" id="1_ovrld"]
+[ext_resource type="Script" path="res://Scripts/EntityZone.gd" id="1_gsmrv"]
 [ext_resource type="Texture2D" uid="uid://wl84xm5jfbnm" path="res://Sprites/Placeholder/CharacterPos.png" id="2_c5v1x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ha8jm"]
@@ -8,7 +8,7 @@ radius = 25.0
 height = 122.0
 
 [node name="EntityZone" type="StaticBody2D" groups=["dropable"]]
-script = ExtResource("1_ovrld")
+script = ExtResource("1_gsmrv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -16,6 +16,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ha8jm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 offset_left = -60.0
 offset_top = -85.0
 offset_right = 60.0

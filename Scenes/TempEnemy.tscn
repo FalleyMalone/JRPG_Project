@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ba5a4mcs12fq6"]
 
 [ext_resource type="Script" path="res://Scenes/TempEnemy.gd" id="1_7in87"]
-[ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Placeholder/SlimeGreen.png" id="2_v7awe"]
+[ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Enemies/SlimeGreen.png" id="2_bmuo5"]
 [ext_resource type="Texture2D" uid="uid://dxy13sniooj30" path="res://Sprites/Placeholder/CharacterFocus.png" id="3_eqo1v"]
 
 [sub_resource type="Animation" id="Animation_tguv7"]
@@ -49,7 +49,7 @@ script = ExtResource("1_7in87")
 [node name="EnemySprite" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(4, 2)
-texture = ExtResource("2_v7awe")
+texture = ExtResource("2_bmuo5")
 
 [node name="Focus" type="Sprite2D" parent="."]
 visible = false

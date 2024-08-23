@@ -1,31 +1,29 @@
-{"Slimes":
-	[
-		{"Type": "Green Slime",
+{"Slimes": 
+	{"Green Slime": {"Type": "Green Slime",
 		"Gender": "Null",
 		"Health": 6,
 		"Defense": 0,
 		"Speed": 3,
 		"Attack": 2,
 		"Element": "Normal",
-		"Sprite": "res://Sprites/Placeholder/SlimeGreen.png"
-		},
-		{"Type": "Blue Slime",
+		"Sprite": "res://Sprites/Enemies/SlimeGreen.png"},
+		
+	"Blue Slime": {"Type": "Blue Slime",
 		"Gender": "Null",
-		"Health": 6,
-		"Defense": 0,
-		"Speed": 3,
-		"Attack": 2,
+		"Health": 10,
+		"Defense": 1,
+		"Speed": 2,
+		"Attack": 3,
 		"Element": "Water",
-		"Sprite": "res://Sprites/Placeholder/SlimeBlue.png"
-		},
-		{"Type": "Red Slime",
+		"Sprite": "res://Sprites/Enemies/SlimeBlue.png"},
+		
+	"Red Slime": {"Type": "Red Slime",
 		"Gender": "Null",
-		"Health": 6,
+		"Health": 8,
 		"Defense": 0,
-		"Speed": 3,
-		"Attack": 2,
+		"Speed": 4,
+		"Attack": 4,
 		"Element": "Fire",
-		"Sprite": "res://Sprites/Placeholder/SlimeRed.png"
-		},
-	]
+		"Sprite": "res://Sprites/Enemies/SlimeRed.png"},
+	}
 }
