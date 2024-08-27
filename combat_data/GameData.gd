@@ -2,8 +2,10 @@ extends Node
 
 var data_file_path = "res://combat_data/ClassData.json"
 var enemy_file_path = "res://combat_data/EnemyData.json"
+var ability_file_path = "res://combat_data/AbilityData.json"
 var character_data = {}
 var enemy_data = {}
+var ability_data = {}
 
 var character_rarity_distribution = {
 		"Common": 50,
@@ -36,6 +38,7 @@ var enemy_stats = ["Health", "Defense", "Speed", "Attack"]
 func _ready():
 	character_data = load_json_data(data_file_path)
 	enemy_data = load_json_data(enemy_file_path)
+	ability_data = load_json_data(ability_file_path)
 
 
 func load_json_data(filePath : String):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckywnsm63x07n"]
+[gd_scene load_steps=6 format=3 uid="uid://ckywnsm63x07n"]
 
 [ext_resource type="Script" path="res://Scenes/enemy_generation.gd" id="1_8oqh6"]
 [ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Enemies/SlimeGreen.png" id="2_bimqq"]
@@ -14,6 +14,9 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gq2se"]
+radius = 48.3735
 
 [node name="EnemyGeneration" type="CharacterBody2D"]
 script = ExtResource("1_8oqh6")
@@ -38,3 +41,11 @@ layout_mode = 0
 offset_right = 80.0
 offset_bottom = 20.0
 scroll_active = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gq2se")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

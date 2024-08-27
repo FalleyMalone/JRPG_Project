@@ -16,6 +16,7 @@ texture = ExtResource("1_36mh8")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Choice" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -41,12 +42,17 @@ text = "Run
 "
 
 [node name="TeamSetup" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 461.5
+offset_top = 547.0
+offset_right = 690.5
+offset_bottom = 648.0
 
-[node name="Button" type="Button" parent="CanvasLayer/TeamSetup"]
+[node name="Ready" type="Button" parent="CanvasLayer/TeamSetup"]
 layout_mode = 2
+text = "Ready"
 
 [node name="PlayerGroup" parent="." instance=ExtResource("2_52x6o")]
 
 [node name="EnemyGroup" parent="." instance=ExtResource("3_f161f")]
+
+[connection signal="pressed" from="CanvasLayer/TeamSetup/Ready" to="." method="_on_ready_pressed"]

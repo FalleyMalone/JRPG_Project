@@ -22,6 +22,8 @@ func _ready():
 		add_child(instance)
 		enemies.append(instance)
 	var current_nodes = get_child_count()
+
+
 	
 func remove_draggable():
 	for child in get_children():
