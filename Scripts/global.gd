@@ -6,7 +6,8 @@ var pre_combat = true
 
 var player_turn = false
 
-var current_turn 
+var active_entity
+var temp
 
 var selected_zones = {
 	"OneP"   : false,

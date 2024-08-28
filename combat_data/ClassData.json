@@ -16,4 +16,5 @@
 	"RareMulti": 1.6,
 	"EpicMulti": 2.2,
 	"LegendaryMulti": 3,
-	}}
+	"Sprite": "res://Sprites/Characters/TempFarmer.png"
+}}

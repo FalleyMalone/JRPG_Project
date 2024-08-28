@@ -18,11 +18,12 @@ func _ready():
 	new_mob["level"] = 1
 	new_mob["Defense"] = 0
 	new_mob["character_rarity"] = CharacterDetermineRarity()
-	CharacterDetermineBackground()
-	CharacterDetermineRaceGender()
+	new_mob["Sprite"] = CharacterDetermineSprite(new_mob["character_id"])
 	for i in GameData.character_stats:
 		if GameData.character_data[new_mob["character_id"]][i] != null:
 			new_mob[i] = CharacterDetermineStats(new_mob["character_id"], new_mob["character_rarity"], i)
+	new_mob["Stamana"] = CharacterDetermineStamana(new_mob["Str"], new_mob["Dex"], new_mob["Con"])
+	CharacterDetermineAttacks(new_mob["character_id"])
 
 func CharacterDetermineClass():
 	var new_character_class
@@ -44,29 +45,56 @@ func CharacterDetermineRarity():
 			rarity_roll -= GameData.character_rarity_distribution[i]
 	return new_character_rarity
 
-func CharacterDetermineBackground():
-	pass
-
-func CharacterDetermineRaceGender():
-	pass
+func CharacterDetermineStamana(str, dex, con):
+	var stam = (str * 2) + (dex * 2) + (con * 3)
+	return stam
 
 func CharacterDetermineSpawn(spawn):
 	var spawn_point = GameData.player_possitions[spawn]
 	global_position = spawn_point
-	new_mob["Location"] = spawn
+	new_mob["Location"] = str(spawn)
 	initialPos = spawn
 	global.player_zones[spawn] = false
 
 func CharacterDetermineStats(character_id, rarity, stat):
 	var stat_val = GameData.character_data[character_id][stat] * GameData.character_data[character_id][rarity + "Multi"]
-	if stat == "Con":
-		new_mob["Health"] = 5 + stat_val
-		health_bar.max_value = new_mob["Health"]
-		health_bar.value = new_mob["Health"]
-		health_count.append_text("[center][b]%s/%s" % [stat_val, stat_val])
-	elif stat == "Dex":
-		new_mob["Speed"] = stat_val
+	match(stat):
+		"Con":
+			new_mob["Health"] = snapped(5 + stat_val, 1)
+			print(new_mob["Health"])
+			health_bar.max_value = new_mob["Health"]
+			health_bar.value = new_mob["Health"]
+			health_count.append_text("[center][b]%s/%s" % [new_mob["Health"], new_mob["Health"]])
+		"Dex":
+			new_mob["Speed"] = snapped(stat_val, 1)
+		"Int":
+			new_mob["Mana"] = snapped(10 + (stat_val * 3), 1)
 	return snapped(stat_val, 1)
+
+func CharacterDetermineSprite(character_id):
+	var sprite = GameData.character_data[character_id]["Sprite"]
+	sprite_2d.texture = load(sprite)
+	return sprite
+
+func CharacterDetermineAttacks(character_id):
+	new_mob["Attacks"] = {}
+	for a in GameData.ability_data[character_id]:
+		var attack_info = GameData.ability_data[character_id][a]
+		var attack = {}
+		attack["Name"] = a
+		attack["Type"] = attack_info["Type"]
+		attack["MinDmg"] = dmg_weighting(attack_info["BaseMin"], attack_info)
+		attack["MaxDmg"] = dmg_weighting(attack_info["BaseMax"], attack_info)
+		attack["Cost"] = attack_info["Cost"]
+		attack["CostType"] = attack_info["CostType"]
+		attack["CritChance"] = snapped(new_mob["Luck"] * attack_info["LuckWeight"], 1)
+		new_mob["Attacks"][a] = attack
+
+func dmg_weighting(base, attack):
+	var dmg_val = base
+	for stat in GameData.ability_weight:
+		dmg_val += new_mob[stat] * (attack[stat] / 100)
+	return snapped(dmg_val, 1)
 
 func _process(delta):
 	if draggable:
@@ -104,8 +132,10 @@ func _on_area_2d_mouse_entered():
 	if not global.is_dragging && global.pre_combat:
 		draggable = true
 		scale = Vector2(1.05, 1.05)
+		z_index = 10
 
 func _on_area_2d_mouse_exited():
 	if not global.is_dragging:
 		draggable = false
 		scale = Vector2(1, 1)
+		z_index = 3

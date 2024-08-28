@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://1f4rkepdmd32"]
 
 [ext_resource type="Script" path="res://Scenes/character_generation.gd" id="1_nku1i"]
-[ext_resource type="Texture2D" uid="uid://cy7uph5ydklht" path="res://Sprites/Enemies/SlimeGreen.png" id="2_ncy5u"]
+[ext_resource type="Texture2D" uid="uid://bu7ou3abdnj1b" path="res://Sprites/Characters/TempFarmer.png" id="2_frx18"]
 [ext_resource type="FontFile" uid="uid://b26htrqiy0pds" path="res://Theme Items/Fonts/Nexa-Heavy.ttf" id="3_4rqv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikew0"]
@@ -25,8 +25,10 @@ z_as_relative = false
 script = ExtResource("1_nku1i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -35)
-texture = ExtResource("2_ncy5u")
+texture_filter = 1
+position = Vector2(0, -90)
+scale = Vector2(2, 2)
+texture = ExtResource("2_frx18")
 
 [node name="TextureProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 5

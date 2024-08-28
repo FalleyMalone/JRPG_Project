@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://h40tq6bcdirn"]
+[gd_scene load_steps=6 format=3 uid="uid://h40tq6bcdirn"]
 
 [ext_resource type="Texture2D" uid="uid://b2w7ktgu20rsk" path="res://Sprites/Placeholder/BasicLayout.png" id="1_36mh8"]
 [ext_resource type="Script" path="res://Levels/TestOne.gd" id="1_qdnyv"]
 [ext_resource type="PackedScene" uid="uid://desklmqd1b8i8" path="res://Scenes/player_group.tscn" id="2_52x6o"]
 [ext_resource type="PackedScene" uid="uid://bbjwepfq1ljs7" path="res://Scenes/enemy_group.tscn" id="3_f161f"]
+[ext_resource type="PackedScene" uid="uid://cdxbecdm1ta05" path="res://ui/battle_ui.tscn" id="3_y1dl0"]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_qdnyv")
@@ -13,33 +14,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_36mh8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Choice" type="VBoxContainer" parent="CanvasLayer"]
+[node name="BattleUi" parent="." instance=ExtResource("3_y1dl0")]
 visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -114.5
-offset_top = -101.0
-offset_right = 114.5
-grow_horizontal = 2
-grow_vertical = 0
 
-[node name="Attack" type="Button" parent="CanvasLayer/Choice"]
-layout_mode = 2
-text = "Attack"
-
-[node name="Defend" type="Button" parent="CanvasLayer/Choice"]
-layout_mode = 2
-text = "Defend"
-
-[node name="Run" type="Button" parent="CanvasLayer/Choice"]
-layout_mode = 2
-text = "Run
-"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TeamSetup" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 461.5
@@ -55,4 +33,5 @@ text = "Ready"
 
 [node name="EnemyGroup" parent="." instance=ExtResource("3_f161f")]
 
+[connection signal="update_ui" from="." to="BattleUi" method="_on_test_level_update_ui"]
 [connection signal="pressed" from="CanvasLayer/TeamSetup/Ready" to="." method="_on_ready_pressed"]

@@ -6,8 +6,6 @@ var random = RandomNumberGenerator.new()
 var player_gen = preload("res://Scenes/character_generation.tscn")
 var players = []
 
-@onready var choice = $"../CanvasLayer/Choice"
-
 func _ready():
 	zones = get_children()
 	SpawnPlayer()

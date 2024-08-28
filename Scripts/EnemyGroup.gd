@@ -6,8 +6,6 @@ var random = RandomNumberGenerator.new()
 var enemy_gen = preload("res://Scenes/enemy_generation.tscn")
 var enemies = []
 
-@onready var choice = $"../CanvasLayer/Choice"
-
 func _ready():
 	var starting_nodes = get_child_count()
 	random.randomize()

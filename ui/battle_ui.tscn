@@ -1,0 +1,707 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdxbecdm1ta05"]
+
+[ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_fbhjg"]
+[ext_resource type="Texture2D" uid="uid://s3jivhqxhkp" path="res://Sprites/Placeholder/UILayout.png" id="1_otois"]
+[ext_resource type="Texture2D" uid="uid://b8mp18ibwus2c" path="res://Sprites/Placeholder/EnemyPlaceholder.png" id="2_agiuq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ruj7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olw4i"]
+bg_color = Color(0.897639, 0.0622155, 0.0368331, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prsmx"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es1u1"]
+bg_color = Color(0.537255, 0.698039, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dkqg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8pc7"]
+bg_color = Color(0.292768, 0.48852, 0.935916, 1)
+
+[node name="BattleUi" type="CanvasLayer"]
+script = ExtResource("1_fbhjg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_otois")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.38
+mouse_filter = 2
+
+[node name="MainBar" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.03
+theme_override_constants/separation = 12
+
+[node name="KeyActions" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.52
+
+[node name="ActionColOne" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Attack" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions/ActionColOne"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Attack"
+
+[node name="Run" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions/ActionColOne"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Run
+"
+
+[node name="ActionColTwo" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Skill" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions/ActionColTwo"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Skill"
+
+[node name="Items" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/KeyActions/ActionColTwo"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Items
+"
+
+[node name="PlayerStats" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="PlayerPort" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.58
+texture = ExtResource("2_agiuq")
+expand_mode = 2
+
+[node name="Val Bars" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthLable" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="RichTextLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/HealthLable"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "HP:"
+
+[node name="HealthVal" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/HealthLable"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.37
+theme_override_font_sizes/font_size = 11
+text = "Null"
+horizontal_alignment = 2
+
+[node name="Health" type="ProgressBar" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_8ruj7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_olw4i")
+value = 100.0
+show_percentage = false
+
+[node name="StamLable" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/StamLable"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SP:"
+
+[node name="StamVal" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/StamLable"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.37
+theme_override_font_sizes/font_size = 11
+text = "Null"
+horizontal_alignment = 2
+
+[node name="Stam" type="ProgressBar" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_prsmx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_es1u1")
+value = 100.0
+show_percentage = false
+
+[node name="ManaLable" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/ManaLable"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "MP:"
+
+[node name="ManaVal" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/ManaLable"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.37
+theme_override_font_sizes/font_size = 11
+text = "Null"
+horizontal_alignment = 2
+
+[node name="Mana" type="ProgressBar" parent="Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_5dkqg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o8pc7")
+value = 100.0
+show_percentage = false
+
+[node name="ActionOptions" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.7
+
+[node name="ActionCol" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ActionRow" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow2" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow3" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow4" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionCol2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ActionRow" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow2" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow3" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow4" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionCol3" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ActionRow" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow2" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow3" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionRow4" type="Control" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionButton" type="Button" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4"]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+
+[node name="ActionTab" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4"]
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 16.0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.51
+theme_override_font_sizes/font_size = 11
+text = "- - -"
+
+[node name="AbilityCost" type="Label" parent="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4/ActionTab"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.04
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="ActionInfo" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/MainBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.37
+text = "Action Name
+Action Cost
+Action Description"

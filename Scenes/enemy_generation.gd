@@ -12,7 +12,7 @@ func _ready():
 	new_mob["enemy_type_id"] = EnemyDetermineTypeID(new_mob["enemy_type"])
 	new_mob["Team"] = "Enemy"
 	new_mob["enemy_element"] = EnemyDetermineElement(new_mob["enemy_type"], new_mob["enemy_type_id"])
-	new_mob["enemy_sprite"] = EnemyDetermineSprite(new_mob["enemy_type"], new_mob["enemy_type_id"])
+	new_mob["Sprite"] = EnemyDetermineSprite(new_mob["enemy_type"], new_mob["enemy_type_id"])
 	for i in GameData.enemy_stats:
 		if GameData.enemy_data[new_mob["enemy_type"]][new_mob["enemy_type_id"]][i] != null:
 			new_mob[i] = EnemyDetermineStats(new_mob["enemy_type"], new_mob["enemy_type_id"], i)

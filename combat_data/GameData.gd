@@ -34,6 +34,7 @@ var player_possitions = {
 
 var character_stats = ["Str", "Dex", "Con", "Wis", "Int", "Cha", "Luck"]
 var enemy_stats = ["Health", "Defense", "Speed", "Attack"]
+var ability_weight = ["Str", "Dex", "Con", "Wis", "Int", "Cha"]
 
 func _ready():
 	character_data = load_json_data(data_file_path)

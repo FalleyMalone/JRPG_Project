@@ -6,4 +6,20 @@
 	{"Single" : "Null",
 	"Multi" : "Null",
 	"AOE" : "Null"},
+"Farmer":
+	{"Jab" : {"Type": "Melee",
+		"Name": "Jab",
+		"Level": 1,
+		"BaseMin": 1,
+		"BaseMax": 2,
+		"Str": 30,
+		"Dex": 10,
+		"Con": 0,
+		"Wis": 0,
+		"Int": 0,
+		"Cha": 0,
+		"LuckWeight": 0.5,
+		"CostType": "Stam",
+		"Cost": 3,}
+	},
 }
