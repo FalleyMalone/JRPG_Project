@@ -17,12 +17,16 @@ func _ready():
 		used_spawns.append(rand_spawn_point) 
 		var instance = enemy_gen.instantiate()
 		instance.EnemyDetermineSpawn(rand_spawn_point)
+		#instance.target.connect()
 		add_child(instance)
 		enemies.append(instance)
 	var current_nodes = get_child_count()
 
 
-	
 func remove_draggable():
 	for child in get_children():
 		child.remove_from_group("dropable")
+
+
+func target(new_mob):
+	pass

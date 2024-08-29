@@ -34,4 +34,5 @@ text = "Ready"
 [node name="EnemyGroup" parent="." instance=ExtResource("3_f161f")]
 
 [connection signal="update_ui" from="." to="BattleUi" method="_on_test_level_update_ui"]
+[connection signal="selected_attack" from="BattleUi" to="." method="_on_battle_ui_selected_attack"]
 [connection signal="pressed" from="CanvasLayer/TeamSetup/Ready" to="." method="_on_ready_pressed"]

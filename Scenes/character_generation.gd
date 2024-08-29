@@ -77,18 +77,19 @@ func CharacterDetermineSprite(character_id):
 	return sprite
 
 func CharacterDetermineAttacks(character_id):
-	new_mob["Attacks"] = {}
+	new_mob["Attacks"] = []
 	for a in GameData.ability_data[character_id]:
-		var attack_info = GameData.ability_data[character_id][a]
+		var attack_info = a
+		var attack_key = a.keys()[0]
 		var attack = {}
-		attack["Name"] = a
-		attack["Type"] = attack_info["Type"]
-		attack["MinDmg"] = dmg_weighting(attack_info["BaseMin"], attack_info)
-		attack["MaxDmg"] = dmg_weighting(attack_info["BaseMax"], attack_info)
-		attack["Cost"] = attack_info["Cost"]
-		attack["CostType"] = attack_info["CostType"]
-		attack["CritChance"] = snapped(new_mob["Luck"] * attack_info["LuckWeight"], 1)
-		new_mob["Attacks"][a] = attack
+		attack["Name"] = a[attack_key]["Name"]
+		attack["Type"] = a[attack_key]["Type"]
+		attack["MinDmg"] = dmg_weighting(a[attack_key]["BaseMin"], a[attack_key])
+		attack["MaxDmg"] = dmg_weighting(a[attack_key]["BaseMax"], a[attack_key])
+		attack["Cost"] = a[attack_key]["Cost"]
+		attack["CostType"] = a[attack_key]["CostType"]
+		attack["CritChance"] = snapped(new_mob["Luck"] * a[attack_key]["LuckWeight"], 1)
+		new_mob["Attacks"].append(attack)
 
 func dmg_weighting(base, attack):
 	var dmg_val = base

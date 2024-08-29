@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var mana_val = $"Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/ManaLable/ManaVal"
 @onready var mana_bar = $"Control/MarginContainer/VBoxContainer/MainBar/PlayerStats/Val Bars/Mana"
 
+signal selected_attack
 
 var action_bars = ["Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow", 
 "Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2", 
@@ -39,16 +40,62 @@ func _on_test_level_update_ui():
 		mana_val.text = str(global.temp["Mana"])
 		mana_bar.value = global.temp["Mana"]
 		mana_bar.max_value = global.temp["Mana"]
-		for a in global.temp["Attacks"]:
-			var attack_num = global.temp["Attacks"].size()
-			var attack = global.temp["Attacks"][a]
-			for i in range(attack_num):
-				var button_node = get_node(action_bars[i] + "/ActionButton")
-				var icon = get_node(action_bars[i] + "/ActionTab/AbilityIcon")
-				var a_name = get_node(action_bars[i] + "/ActionTab/AbilityName")
-				var a_cost = get_node(action_bars[i] + "/ActionTab/AbilityCost")
-				button_node.visible = true
-				icon.texture = load("res://Sprites/Placeholder/" + attack["Type"] + ".png")
-				a_name.text = attack["Name"]
-				a_cost.text = str(attack["Cost"])
-	
+		var attack_num = global.temp["Attacks"].size()
+		for i in range(attack_num):
+			var button_node = get_node(action_bars[i] + "/ActionButton")
+			var icon = get_node(action_bars[i] + "/ActionTab/AbilityIcon")
+			var a_name = get_node(action_bars[i] + "/ActionTab/AbilityName")
+			var a_cost = get_node(action_bars[i] + "/ActionTab/AbilityCost")
+			button_node.visible = true
+			icon.texture = load("res://Sprites/Placeholder/" + global.temp["Attacks"][i]["Type"] + ".png")
+			a_name.text = global.temp["Attacks"][i]["Name"]
+			a_cost.text = str(global.temp["Attacks"][i]["Cost"])
+
+
+
+func _on_action_button1_pressed():
+	selected_attack.emit(global.temp["Attacks"][1])
+
+
+func _on_action_button2_pressed():
+	selected_attack.emit(global.temp["Attacks"][2])
+
+
+func _on_action_button3_pressed():
+	selected_attack.emit(global.temp["Attacks"][3])
+
+
+func _on_action_button4_pressed():
+	selected_attack.emit(global.temp["Attacks"][4])
+
+
+func _on_action_button5_pressed():
+	selected_attack.emit(global.temp["Attacks"][5])
+
+
+func _on_action_button6_pressed():
+	selected_attack.emit(global.temp["Attacks"][6])
+
+
+func _on_action_button7_pressed():
+	selected_attack.emit(global.temp["Attacks"][7])
+
+
+func _on_action_button8_pressed():
+	selected_attack.emit(global.temp["Attacks"][8])
+
+
+func _on_action_button9_pressed():
+	selected_attack.emit(global.temp["Attacks"][9])
+
+
+func _on_action_button10_pressed():
+	selected_attack.emit(global.temp["Attacks"][10])
+
+
+func _on_action_button11_pressed():
+	selected_attack.emit(global.temp["Attacks"][11])
+
+
+func _on_action_button12_pressed():
+	selected_attack.emit(global.temp["Attacks"][12])

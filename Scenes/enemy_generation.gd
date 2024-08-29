@@ -3,7 +3,10 @@ extends Node2D
 @onready var sprite_2d = $Sprite2D
 @onready var health_bar = $TextureProgressBar
 @onready var health_count = $TextureProgressBar/RichTextLabel
-var selectable = false
+signal target
+signal de_target
+var selected = false
+var hovering = false
 var new_mob = {}
 
 # Called when the node enters the scene tree for the first time.
@@ -56,18 +59,25 @@ func EnemyDetermineStats(enemy_type, enemy_type_id, stat):
 	return stat_val
 
 func _process(delta):
-	if selectable:
-		if Input.is_action_pressed("click"):
-			pass
+	if hovering:
+		if Input.is_action_just_pressed("click"):
+			match selected:
+				true: 
+					global.selected_zones[new_mob["Location"]] = false
+					selected = false
+					target.emit(new_mob)
+				false: 
+					global.selected_zones[new_mob["Location"]] = true
+					selected = true
+					de_target.emit(new_mob)
+
 
 func _on_area_2d_mouse_entered():
 	if not global.pre_combat && global.player_turn:
-		global.selected_zones[new_mob["Location"]] = true
-		selectable = true
+		hovering = true
 		scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited():
 	if not global.pre_combat && global.player_turn:
-		global.selected_zones[new_mob["Location"]] = false
-		selectable = false
+		hovering = false
 		scale = Vector2(1, 1)

@@ -10,6 +10,7 @@ var turn_order = []
 var enemies
 var players
 var i = 0
+var selected_atk
 
 
 func _ready():
@@ -54,3 +55,6 @@ func play_turn(i):
 		"Enemy":
 			global.player_turn = false
 
+
+func _on_battle_ui_selected_attack(dic):
+	selected_atk = dic

@@ -6,8 +6,8 @@
 	{"Single" : "Null",
 	"Multi" : "Null",
 	"AOE" : "Null"},
-"Farmer":
-	{"Jab" : {"Type": "Melee",
+"Farmer":[{
+	"Jab" : {"Type": "Melee",
 		"Name": "Jab",
 		"Level": 1,
 		"BaseMin": 1,
@@ -20,6 +20,20 @@
 		"Cha": 0,
 		"LuckWeight": 0.5,
 		"CostType": "Stam",
-		"Cost": 3,}
-	},
+		"Cost": 3,}},
+	{"Rock Sling" : {"Type": "Ranged",
+		"Name": "Rock Sling",
+		"Level": 1,
+		"BaseMin": 1,
+		"BaseMax": 2,
+		"Str": 10,
+		"Dex": 15,
+		"Con": 0,
+		"Wis": 0,
+		"Int": 0,
+		"Cha": 0,
+		"LuckWeight": 0.5,
+		"CostType": "Stam",
+		"Cost": 5,},
+	}],
 }

@@ -8,6 +8,7 @@ var player_turn = false
 
 var active_entity
 var temp
+var selected_attack
 
 var selected_zones = {
 	"OneP"   : false,

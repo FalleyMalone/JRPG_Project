@@ -705,3 +705,16 @@ size_flags_stretch_ratio = 1.37
 text = "Action Name
 Action Cost
 Action Description"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow/ActionButton" to="." method="_on_action_button1_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow2/ActionButton" to="." method="_on_action_button2_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow3/ActionButton" to="." method="_on_action_button3_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol/ActionRow4/ActionButton" to="." method="_on_action_button4_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow/ActionButton" to="." method="_on_action_button5_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow2/ActionButton" to="." method="_on_action_button6_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow3/ActionButton" to="." method="_on_action_button7_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol2/ActionRow4/ActionButton" to="." method="_on_action_button8_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow/ActionButton" to="." method="_on_action_button9_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow2/ActionButton" to="." method="_on_action_button10_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow3/ActionButton" to="." method="_on_action_button11_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/MainBar/ActionOptions/ActionCol3/ActionRow4/ActionButton" to="." method="_on_action_button12_pressed"]
